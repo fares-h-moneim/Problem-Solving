@@ -1,5 +1,6 @@
 class Solution {
 public:
+    /* DP */
     int maxProfit(vector<int>& prices) {
         vector<int> dp(2);
         dp[0] = INT_MAX, dp[1] = 0;
@@ -9,4 +10,16 @@ public:
         }
         return dp[1];
     }
+
+    /* 2 Pointer */
+    int maxProfit(vector<int>& prices) {
+       int maxP = 0, l = 0, r = 1;
+       while(r<prices.size()){
+           if(prices[l]<prices[r]) maxP = max(maxP, prices[r]-prices[l]);
+           else l = r;
+           r++;
+       }
+       return maxP;
+    }
+    
 };
